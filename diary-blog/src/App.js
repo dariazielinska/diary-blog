@@ -5,6 +5,7 @@ import Auth from './components/Auth';
 import MainPage from './components/MainPage';
 import AddPost from './components/AddPost';
 import { auth } from './firebaseConfig';
+import './index.css';
 
 function App() {
   const [user, setUser] = useState(null);

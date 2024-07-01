@@ -31,13 +31,44 @@ const Auth = () => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-      <button onClick={handleSignUp}>Sign Up</button>
-      <h2>Sign In</h2>
-      <button onClick={handleSignIn}>Sign In</button>
+    <div style={{display:"flex"}}>
+      <div style={{width:"50%", height:"100vh", backgroundColor:"#a4c4b5"}}>
+
+      </div>
+      <div style={{width:"50%", height:"100vh", display:"flex", alignItems:"center", justifyContent:"center", backgroundColor:"#fff"}}>
+        <div style={{width:"400px", height:"200px", border:"1px solid red"}}>
+          <div style={{width:"80%", margin:"0 auto", padding: "30px 0"}}>
+            <input 
+              type="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              placeholder="Email" 
+              style={{width:"100%", height:"30px"}}
+            />
+            <input 
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              placeholder="Password" 
+              style={{width:"100%", height:"30px", marginTop:"20px"}}
+            />
+          </div>
+          <div style={{width:"80%", margin:"0 auto", display:"flex", justifyContent:"space-between"}}>
+            <button 
+              onClick={handleSignUp}
+              style={{width:"40%", height:"30px"}}
+            > 
+              Sign Up
+            </button>
+            <button 
+              onClick={handleSignIn}
+              style={{width:"40%", height:"30px"}}
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
