@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs, where, query, limit } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+import { auth } from '../firebaseConfig';
 
 const RecentPosts = () => {
-  const recentPosts = [
-    { id: 1, title: 'Post 1', content: 'Content of Post 1' },
-    { id: 2, title: 'Post 2', content: 'Content of Post 2' },
-    { id: 3, title: 'Post 3', content: 'Content of Post 3' },
-  ];
+  const [recentPosts, setRecentPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          console.error('Użytkownik niezalogowany!');
+          return;
+        }
+        
+        const q = query(collection(db, 'posts'), where('author', '==', user.uid));
+        console.log("q", q)
+        const querySnapshot = await getDocs(q);
+        console.log("querySnapshot", querySnapshot)
+        const postsData = [];
+        querySnapshot.forEach((doc) => {
+          postsData.push({ id: doc.id, ...doc.data() });
+        });
+        setRecentPosts(postsData);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
-    <div style={{ width: '90%', float: 'left' }}>
+    <div style={{ width: '85%', float: 'left' }}>
       <h2>Recent Posts</h2>
       {recentPosts.map(post => (
         <div key={post.id}>

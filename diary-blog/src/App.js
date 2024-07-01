@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import Auth from './components/Auth';
 import MainPage from './components/MainPage';
+import AddPost from './components/AddPost';
 import { auth } from './firebaseConfig';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={user ? <MainPage /> : <Navigate to="/auth" />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/addPost" element={<AddPost />} />
       </Routes>
     </Router>
   );
