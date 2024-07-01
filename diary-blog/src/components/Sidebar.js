@@ -1,10 +1,10 @@
 import React from 'react';
+import Archive from './Archieve';
 
-const Sidebar = () => {
+const Sidebar = ({ setRecentPosts }) => {
   return (
     <div style={{ width: '15%', float: 'left' }}>
-      <h2>Sidebar</h2>
-      <p>This section will contain sidebar components, such as archive and calendar.</p>
+      <Archive setRecentPosts={setRecentPosts} />
     </div>
   );
 };

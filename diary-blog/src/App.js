@@ -8,7 +8,8 @@ import { auth } from './firebaseConfig';
 
 function App() {
   const [user, setUser] = useState(null);
-
+  const [recentPosts, setRecentPosts] = useState([]);
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -23,7 +24,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={user ? <MainPage /> : <Navigate to="/auth" />} />
+        <Route path="/" element={user ? <MainPage recentPosts={recentPosts} setRecentPosts={setRecentPosts} /> : <Navigate to="/auth" />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/addPost" element={<AddPost />} />
       </Routes>
