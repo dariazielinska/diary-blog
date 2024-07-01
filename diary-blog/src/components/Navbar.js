@@ -17,7 +17,7 @@ const Navbar = ({ fetchPosts }) => {
 
   return (
     <nav style={{ backgroundColor: '#333', color: '#fff', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <h1 onClick={fetchPosts} style={{ cursor: 'pointer' }}>Diary Blog</h1>
+      <Link to="/" onClick={fetchPosts} style={{ cursor: 'pointer' }}>Diary Blog</Link>
       <div>
         <Link to="/addPost" style={{ color: '#fff', marginRight: '10px' }}>Dodaj</Link>
         <button onClick={handleSignOut}>Wyloguj</button>
