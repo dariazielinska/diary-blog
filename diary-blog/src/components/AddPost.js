@@ -1,52 +1,67 @@
 import React, { useState } from 'react';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { db, auth } from '../firebaseConfig';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import { useNavigate } from 'react-router-dom';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebaseConfig'; 
-import { auth } from '../firebaseConfig';
 
 const AddPost = () => {
-  const [postContent, setPostContent] = useState('');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const navigate = useNavigate();
 
-  const handleAddPost = async () => {
-    try {
-      const user = auth.currentUser;
-      if (!user) {
-        console.error('Użytkownik niezalogowany!');
-        return;
-      }
+  const handleAddPost = async (e) => {
+    e.preventDefault();
+    const user = auth.currentUser;
+    if (!user) {
+      console.error('Użytkownik niezalogowany!');
+      return;
+    }
 
-      const docRef = await addDoc(collection(db, 'posts'), {
-        content: postContent,
-        author: user.uid, 
-        createdAt: new Date(),
+    try {
+      await addDoc(collection(db, 'posts'), {
+        title,
+        content,
+        author: user.uid,
+        createdAt: Timestamp.now(),
       });
-      console.log('Dodano nowy post z ID:', docRef.id);
-      
+      setTitle('');
+      setContent('');
       navigate('/');
     } catch (error) {
-      console.error('Błąd dodawania posta:', error.message);
+      console.error('Error adding post:', error);
     }
   };
 
   return (
     <>
       <Navbar appName="Diary Blog" />
-      <div style={{ display: 'flex', marginTop: '20px' }}>
-        <div style={{ flex: 1, padding: '20px' }}>
-          <textarea
-            value={postContent}
-            onChange={(e) => setPostContent(e.target.value)}
-            placeholder="Wprowadź treść posta..."
-            style={{ width: '100%', minHeight: '200px', padding: '10px' }}
-          />
-          <br />
-          <button onClick={handleAddPost} style={{ marginTop: '10px' }}>Dodaj nowy post</button>
-        </div>
-        <Sidebar />
+      <div style={{ width: '85%', float: 'left' }}>
+        <h2>Dodaj nowy post</h2>
+        <form onSubmit={handleAddPost}>
+          <div>
+            <label htmlFor="title">Tytuł</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="content">Treść</label>
+            <textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              required
+            ></textarea>
+          </div>
+          <button type="submit">Dodaj nowy post</button>
+        </form>
       </div>
+      <Sidebar />
     </>
   );
 };

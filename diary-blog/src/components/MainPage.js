@@ -9,38 +9,38 @@ import { auth } from '../firebaseConfig';
 const MainPage = () => {
   const [recentPosts, setRecentPosts] = useState([]);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const user = auth.currentUser;
-        if (!user) {
-          console.error('Użytkownik niezalogowany!');
-          return;
-        }
-
-        const q = query(
-          collection(db, 'posts'),
-          where('author', '==', user.uid),
-          orderBy('createdAt', 'desc'),
-          limit(20)
-        );
-        const querySnapshot = await getDocs(q);
-        const postsData = [];
-        querySnapshot.forEach((doc) => {
-          postsData.push({ id: doc.id, ...doc.data() });
-        });
-        setRecentPosts(postsData);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
+  const fetchPosts = async () => {
+    try {
+      const user = auth.currentUser;
+      if (!user) {
+        console.error('Użytkownik niezalogowany!');
+        return;
       }
-    };
 
+      const q = query(
+        collection(db, 'posts'),
+        where('author', '==', user.uid),
+        orderBy('createdAt', 'desc'),
+        limit(20)
+      );
+      const querySnapshot = await getDocs(q);
+      const postsData = [];
+      querySnapshot.forEach((doc) => {
+        postsData.push({ id: doc.id, ...doc.data() });
+      });
+      setRecentPosts(postsData);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  };
+
+  useEffect(() => {
     fetchPosts();
   }, []);
 
   return (
     <div>
-      <Navbar />
+      <Navbar fetchPosts={fetchPosts} />
       <RecentPosts recentPosts={recentPosts} />
       <Sidebar setRecentPosts={setRecentPosts} />
     </div>
