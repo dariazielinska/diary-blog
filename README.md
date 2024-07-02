@@ -19,3 +19,10 @@ The project utilizes the following technologies and tools:
 
 4. **Recent Posts**: Displaying the latest 20 posts of the user after logging in.
 
+## Access
+
+The Diary Blog App is accessible at:
+
+[https://dariazielinska.github.io/diary-blog](https://dariazielinska.github.io/diary-blog/#/auth)
+
+
