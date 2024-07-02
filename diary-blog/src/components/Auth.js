@@ -30,39 +30,62 @@ const Auth = () => {
     }
   };
 
+  const inputStyle = {
+    width: '100%',
+    height: '30px',
+    marginTop: '20px',
+    border: 'none',
+    borderBottom: '1px solid #696969',
+    outline: 'none'
+  };
+
+  const buttonStyle = {
+    width: '45%',
+    height: '30px',
+    border: '1px solid #696969',
+    backgroundColor: "#696969",
+    borderRadius: "20px",
+    color: "#ffffff",
+    marginTop:"50px",
+    cursor: "pointer"
+  };
+
   return (
     <div style={{display:"flex"}}>
-      <div style={{width:"50%", height:"100vh", backgroundColor:"#a4c4b5"}}>
-
+      <div style={{width:"50%", height:"100vh", backgroundColor:"#a4c4b5", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", color: "#F8F4F2"}}>
+        <img src="/AuthImg.png" alt="Description" style={{ maxWidth: '45%', marginBottom:"20px" }} />
+        <h2 style={{margin: "5px"}}>Wspomnienia, które zostaną na lata</h2>
+        <h3 style={{margin: "5px"}}>Proste, bezpiecznie i tylko Twoje</h3>
+        <p style={{fontSize:"10px", width:"70%", textAlign:"center"}}>Dodawaj nieograniczoną liczbę postów do swojego dziennika. Przelej swoje emocje, wspomnienia i przemyślenia w słowa, wracaj do nich zawsze kiedy chcesz. Przypomnij sobie najdrobniejsze szczegóły, wyciągnij wnioski ze swoich błędów i pozwól odkryć siebie na nowo!</p>
       </div>
-      <div style={{width:"50%", height:"100vh", display:"flex", alignItems:"center", justifyContent:"center", backgroundColor:"#fff"}}>
-        <div style={{width:"400px", height:"200px", border:"1px solid red"}}>
-          <div style={{width:"80%", margin:"0 auto", padding: "30px 0"}}>
+      <div style={{width:"50%", height:"85vh", display:"flex", justifyContent:"center", alignItems: "center", backgroundColor:"#fff"}}>
+          <div style={{display:"flex", flexDirection:"column"}}>
+            <img src="/MyBestDiary.png" alt="Description" style={{ width:"200px", marginBottom: "20px"}} />
+            <h1 style={{color:"#B0B0B0", fontSize: "20px", marginBottom: "20px"}}>Witaj w My Best Diary</h1>
             <input 
               type="email" 
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               placeholder="Email" 
-              style={{width:"100%", height:"30px"}}
+              style={inputStyle}
             />
             <input 
               type="password" 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
               placeholder="Password" 
-              style={{width:"100%", height:"30px", marginTop:"20px"}}
+              style={inputStyle}
             />
-          </div>
-          <div style={{width:"80%", margin:"0 auto", display:"flex", justifyContent:"space-between"}}>
+            <div style={{display:"flex", justifyContent:"space-between"}}>
             <button 
               onClick={handleSignUp}
-              style={{width:"40%", height:"30px"}}
+              style={buttonStyle}
             > 
               Sign Up
             </button>
             <button 
               onClick={handleSignIn}
-              style={{width:"40%", height:"30px"}}
+              style={buttonStyle}
             >
               Sign In
             </button>
