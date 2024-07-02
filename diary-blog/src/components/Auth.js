@@ -52,16 +52,35 @@ const Auth = () => {
     cursor: "pointer"
   };
 
+  const smallerScreenStyles = {
+    div: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      aligntems: 'center'
+    },
+    section: { 
+      display: 'none'
+    },
+    h2: {
+      fontSize: '12px',
+      margin: '5px'
+    },
+    h3: {
+      fontSize: '9px',
+      margin: '5px'
+    }
+  };
+
   return (
-    <div style={{display:"flex"}}>
-      <div style={{width:"50%", height:"100vh", backgroundColor:"#a4c4b5", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", color: "#F8F4F2"}}>
+    <div style={window.innerWidth <= 450 ? smallerScreenStyles.div : {display:"flex"}}>
+      <div style={window.innerWidth <= 450 ? smallerScreenStyles.section : {width:"50%", height:"100vh", backgroundColor:"#a4c4b5", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", color: "#F8F4F2"}}>
         <img src={AuthImg} alt="Description" style={{ maxWidth: '45%', marginBottom:"20px" }} />
-        
-        <h2 style={{margin: "5px"}}>Wspomnienia, które zostaną na lata</h2>
-        <h3 style={{margin: "5px"}}>Proste, bezpiecznie i tylko Twoje</h3>
+        <h2 style={window.innerWidth <= 860 ? smallerScreenStyles.h2 : {margin: "5px"}}>Wspomnienia, które zostaną na lata</h2>
+        <h3 style={window.innerWidth <= 860 ? smallerScreenStyles.h3 : {margin: "5px"}}>Proste, bezpiecznie i tylko Twoje</h3>
         <p style={{fontSize:"10px", width:"70%", textAlign:"center"}}>Dodawaj nieograniczoną liczbę postów do swojego dziennika. Przelej swoje emocje, wspomnienia i przemyślenia w słowa, wracaj do nich zawsze kiedy chcesz. Przypomnij sobie najdrobniejsze szczegóły, wyciągnij wnioski ze swoich błędów i pozwól odkryć siebie na nowo!</p>
       </div>
-      <div style={{width:"50%", height:"85vh", display:"flex", justifyContent:"center", alignItems: "center", backgroundColor:"#fff"}}>
+      <div style={{width: window.innerWidth <= 450 ? "100%" : "50%", height:"85vh", display:"flex", justifyContent:"center", alignItems: "center", backgroundColor:"#fff"}}>
           <div style={{display:"flex", flexDirection:"column"}}>
             <img src={MyBestDiary} alt="Description" style={{ width:"200px", marginBottom: "20px"}} />
             <h1 style={{color:"#B0B0B0", fontSize: "20px", marginBottom: "20px"}}>Witaj w My Best Diary</h1>
