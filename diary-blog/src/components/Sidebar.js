@@ -4,7 +4,7 @@ import Calendar from './Calendar'
 
 const Sidebar = ({ setRecentPosts }) => {
   return (
-    <div style={{ width: '15%', float: 'left', display:'flex', flexDirection:'column' }}>
+    <div style={{ width: '18%', float: 'left', display:'flex', flexDirection:'column' }}>
       <Archive setRecentPosts={setRecentPosts} />
       <Calendar setRecentPosts={setRecentPosts} />
     </div>

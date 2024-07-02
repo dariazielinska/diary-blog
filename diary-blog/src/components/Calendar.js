@@ -24,7 +24,7 @@ const Calendar = ({ setRecentPosts }) => {
           where('author', '==', user.uid),
           where('createdAt', '>=', firstDayOfMonth),
           where('createdAt', '<=', lastDayOfMonth),
-          orderBy('createdAt', 'asc')
+          orderBy('createdAt', 'desc')
         );
 
         const querySnapshot = await getDocs(q);
@@ -81,8 +81,18 @@ const Calendar = ({ setRecentPosts }) => {
       days.push(
         <button
           key={day}
-          onClick={() => handleDayClick(day)}
-          style={{ fontWeight: hasPosts ? 'bold' : 'normal' }}
+          onClick={() => {
+            if (hasPosts) handleDayClick(day);
+          }}
+          style={{ 
+            cursor: "pointer", 
+            border:"none", 
+            backgroundColor:"#fff", 
+            fontWeight: hasPosts ? 'bold' : 'normal',
+            width: '15px',
+            textAlign: 'center',
+            margin: '0 5px 5px 0'
+          }}
         >
           {day}
         </button>
@@ -99,12 +109,20 @@ const Calendar = ({ setRecentPosts }) => {
     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
   };
 
+  const monthNames = [
+    'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
+    'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'
+  ];
+
   return (
     <div>
-      <h2>Calendar</h2>
-      <button onClick={handlePrevMonth}>Prev</button>
-      <button onClick={handleNextMonth}>Next</button>
-      <div>{renderDays()}</div>
+      <h2 style={{fontSize:"20px", borderBottom:"4px solid #A4C4B5", width:"90%"}}>Kalendarz</h2>
+      <div style={{display:"flex", justifyContent:"space-between", width:"90%", marginBottom: "10px"}}>
+        <button style={{ cursor: "pointer", border:"none", backgroundColor:"#fff"}} onClick={handlePrevMonth}>{'<'}</button>
+        <span style={{fontSize:"13px"}}>{`${monthNames[currentMonth.getMonth()]} ${currentMonth.getFullYear()}`}</span>
+        <button style={{ cursor: "pointer", border:"none", backgroundColor:"#fff"}} onClick={handleNextMonth}>{'>'}</button>
+      </div>
+      <div style={{width:"95%"}}>{renderDays()}</div>
     </div>
   );
 };

@@ -72,13 +72,15 @@ const Archive = ({ setRecentPosts }) => {
   };
 
   return (
-    <div style={{ width: '15%', float: 'right', marginRight: '20px' }}>
-      <h2>Archive</h2>
-      {months.map((month, index) => (
-        <button key={index} onClick={() => handleMonthClick(month)}>
-          {month}
-        </button>
-      ))}
+    <div style={{ width: '100%', marginRight: '20px' }}>
+      <h2 style={{fontSize:"20px", borderBottom:"4px solid #A4C4B5", width:"90%"}}>Archiwum</h2>
+      <div style={{display:"flex", flexDirection:"column", alignItems:"flex-start"}}>
+        {months.map((month, index) => (
+          <button style={{border:"none", backgroundColor:"#fff"}} key={index} onClick={() => handleMonthClick(month)}>
+            {month}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

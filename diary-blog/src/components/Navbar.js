@@ -1,26 +1,41 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 
 const Navbar = ({ fetchPosts }) => {
-  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
       await signOut(auth);
-      navigate('/auth');
     } catch (error) {
       console.error('Error signing out:', error.message);
     }
   };
 
+  const buttonStyle = {
+    width: '100px',
+    height: '30px',
+    border: '1px solid #696969',
+    backgroundColor: "#696969",
+    borderRadius: "20px",
+    color: "#ffffff",
+    cursor: "pointer", 
+    textDecoration: "none",
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    fontSize: '15px'
+  };
+
   return (
-    <nav style={{ backgroundColor: '#333', color: '#fff', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <Link to="/" onClick={fetchPosts} style={{ cursor: 'pointer' }}>Diary Blog</Link>
-      <div>
-        <Link to="/addPost" style={{ color: '#fff', marginRight: '10px' }}>Dodaj</Link>
-        <button onClick={handleSignOut}>Wyloguj</button>
+    <nav style={{ backgroundColor: '#A4C4B5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Link to="/" onClick={fetchPosts} style={{ cursor: 'pointer', flex: '0 0 auto' }}>
+        <img src={'/MyBestDiaryGreen.png'} alt="Diary Blog" style={{ maxWidth: '40%', height: 'auto', marginLeft: "40px" }} />
+      </Link>
+      <div style={{ display: 'flex', gap: '10px', marginRight:"45px" }}>
+        <Link to="/addPost" style={buttonStyle}> Dodaj post </Link>
+        <Link to="/auth" onClick={handleSignOut} style={buttonStyle}> Wyloguj </Link>
       </div>
     </nav>
   );
