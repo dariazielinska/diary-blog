@@ -52,7 +52,7 @@ const AddPost = () => {
     <>
       <Navbar appName="Diary Blog" />
       <div style={{display:"flex"}}>
-        <div style={{ width: '73%', margin: "25px 45px" }}>
+        <div style={{ width: '73%', margin: "25px 45px", paddingTop:"50px" }}>
           <form onSubmit={handleAddPost}>
             <div>
               <label htmlFor="title"></label>

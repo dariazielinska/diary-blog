@@ -29,7 +29,7 @@ const Navbar = ({ fetchPosts }) => {
   };
 
   return (
-    <nav style={{ backgroundColor: '#A4C4B5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <nav style={{ width:"100%", position: "fixed", backgroundColor: '#A4C4B5', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <Link to="/" onClick={fetchPosts} style={{ cursor: 'pointer', flex: '0 0 auto' }}>
         <img src={'/MyBestDiaryGreen.png'} alt="Diary Blog" style={{ maxWidth: '40%', height: 'auto', marginLeft: "40px" }} />
       </Link>
