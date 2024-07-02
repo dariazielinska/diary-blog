@@ -33,35 +33,55 @@ const AddPost = () => {
     }
   };
 
+  const buttonStyle = {
+    width: '200px',
+    height: '30px',
+    border: '1px solid #696969',
+    backgroundColor: "#696969",
+    borderRadius: "20px",
+    color: "#ffffff",
+    cursor: "pointer", 
+    textDecoration: "none",
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    fontSize: '15px'
+  };
+
   return (
     <>
       <Navbar appName="Diary Blog" />
-      <div style={{ width: '85%', float: 'left' }}>
-        <h2>Dodaj nowy post</h2>
-        <form onSubmit={handleAddPost}>
-          <div>
-            <label htmlFor="title">Tytuł</label>
-            <input
-              type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="content">Treść</label>
-            <textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
-            ></textarea>
-          </div>
-          <button type="submit">Dodaj nowy post</button>
-        </form>
+      <div style={{display:"flex"}}>
+        <div style={{ width: '73%', margin: "25px 45px" }}>
+          <form onSubmit={handleAddPost}>
+            <div>
+              <label htmlFor="title"></label>
+              <input
+                placeholder='Tytuł'
+                type="text"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+                style={{width:"400px", height:"25px", marginBottom: "20px", outlineColor:"#799186"}}
+              />
+            </div>
+            <div>
+              <label htmlFor="content"></label>
+              <textarea
+                id="content"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+                style={{width:"100%", height:"300px", outlineColor:"#799186", marginBottom:"20px"}}
+              ></textarea>
+            </div>
+            <button style={buttonStyle} type="submit">Dodaj nowy post</button>
+          </form>
+        </div>
+        <Sidebar />
       </div>
-      <Sidebar />
+
     </>
   );
 };
