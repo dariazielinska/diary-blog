@@ -117,12 +117,12 @@ const Calendar = ({ setRecentPosts }) => {
   return (
     <div>
       <h2 style={{fontSize:"20px", borderBottom:"4px solid #A4C4B5", width:"90%"}}>Kalendarz</h2>
-      <div style={{display:"flex", justifyContent:"space-between", width:"90%", marginBottom: "10px"}}>
+      <div style={{display:"flex", justifyContent:"space-between", width:"150px", marginBottom: "10px"}}>
         <button style={{ cursor: "pointer", border:"none", backgroundColor:"#fff"}} onClick={handlePrevMonth}>{'<'}</button>
         <span style={{fontSize:"13px"}}>{`${monthNames[currentMonth.getMonth()]} ${currentMonth.getFullYear()}`}</span>
         <button style={{ cursor: "pointer", border:"none", backgroundColor:"#fff"}} onClick={handleNextMonth}>{'>'}</button>
       </div>
-      <div style={{width:"95%"}}>{renderDays()}</div>
+      <div style={{width: "150px"}}>{renderDays()}</div>
     </div>
   );
 };
