@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, query, getDocs, orderBy, limit, where } from 'firebase/firestore';
+import { collection, query, getDocs, orderBy, where, limit } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { auth } from '../firebaseConfig';
 
@@ -19,7 +19,7 @@ const Archive = ({ setRecentPosts }) => {
             collection(db, 'posts'),
             where('author', '==', user.uid),
             orderBy('createdAt', 'desc'),
-            limit(20)
+            limit(1000)
           );
         const querySnapshot = await getDocs(q);
         const postsData = [];
@@ -56,7 +56,6 @@ const Archive = ({ setRecentPosts }) => {
         where('createdAt', '>=', firstDayOfMonth),
         where('createdAt', '<=', lastDayOfMonth),
         orderBy('createdAt', 'desc'),
-        limit(20)
       );
 
       const querySnapshot = await getDocs(q);
@@ -64,7 +63,6 @@ const Archive = ({ setRecentPosts }) => {
       querySnapshot.forEach((doc) => {
         postsData.push({ id: doc.id, ...doc.data() });
       });
-      console.log("POST ", postsData)
       setRecentPosts(postsData);
     } catch (error) {
       console.error(`Error fetching posts for ${monthYear}:`, error);

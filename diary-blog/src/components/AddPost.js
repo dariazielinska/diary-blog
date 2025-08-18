@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { db, auth } from '../firebaseConfig';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AddPost = () => {
   const [title, setTitle] = useState('');
@@ -45,7 +47,8 @@ const AddPost = () => {
     display: 'flex', 
     alignItems: 'center', 
     justifyContent: 'center', 
-    fontSize: '15px'
+    fontSize: '15px',
+    marginTop: '60px'
   };
 
   return (
@@ -66,16 +69,12 @@ const AddPost = () => {
                 style={{width:"400px", height:"25px", marginBottom: "20px", outlineColor:"#799186"}}
               />
             </div>
-            <div>
-              <label htmlFor="content"></label>
-              <textarea
-                id="content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-                style={{width:"100%", height:"300px", outlineColor:"#799186", marginBottom:"20px"}}
-              ></textarea>
-            </div>
+            <ReactQuill
+              value={content}
+              onChange={setContent}
+              theme="snow"
+              style={{height:"300px", marginBottom:"20px"}}
+            />
             <button style={buttonStyle} type="submit">Dodaj nowy post</button>
           </form>
         </div>
