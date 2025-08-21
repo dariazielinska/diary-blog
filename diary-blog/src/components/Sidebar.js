@@ -1,16 +1,14 @@
-import React from 'react';
 import Archive from './Archieve';
-import Calendar from './Calendar'
+import Calendar from './Calendar';
+import Keywords from './Keywords';
 
 const Sidebar = ({ setRecentPosts }) => {
 
   const divStyle = { 
-    position: "fixed", 
-    right: "15px", 
     width: '18%', 
     display:'flex', 
     flexDirection:'column', 
-    marginTop: "50px" 
+    paddingTop: "50px" 
   }
 
   const smallerDivStyle = { 
@@ -25,6 +23,7 @@ const Sidebar = ({ setRecentPosts }) => {
     <div style={window.innerWidth <= 460 ? smallerDivStyle : divStyle}>
       <Archive setRecentPosts={setRecentPosts} />
       <Calendar setRecentPosts={setRecentPosts} />
+      <Keywords setRecentPosts={setRecentPosts} />
     </div>
   );
 };

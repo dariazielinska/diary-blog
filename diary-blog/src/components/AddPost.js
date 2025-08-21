@@ -10,6 +10,7 @@ import 'react-quill/dist/quill.snow.css';
 const AddPost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [keywords, setKeywords] = useState('');
   const navigate = useNavigate();
 
   const handleAddPost = async (e) => {
@@ -26,9 +27,14 @@ const AddPost = () => {
         content,
         author: user.uid,
         createdAt: Timestamp.now(),
+        keywords: keywords
+          .split(',')
+          .map(k => k.trim())
+          .filter(k => k.length > 0),
       });
       setTitle('');
       setContent('');
+      setKeywords('');
       navigate('/');
     } catch (error) {
       console.error('Error adding post:', error);
@@ -40,15 +46,14 @@ const AddPost = () => {
     height: '30px',
     border: '1px solid #696969',
     backgroundColor: "#696969",
-    borderRadius: "20px",
+    borderRadius: "8px",
     color: "#ffffff",
     cursor: "pointer", 
     textDecoration: "none",
     display: 'flex', 
     alignItems: 'center', 
     justifyContent: 'center', 
-    fontSize: '15px',
-    marginTop: '60px'
+    fontSize: '15px'
   };
 
   return (
@@ -75,12 +80,21 @@ const AddPost = () => {
               theme="snow"
               style={{height:"300px", marginBottom:"20px"}}
             />
+            <div style={{marginTop:"50px"}}>
+              <input
+                placeholder="Słowa kluczowe (oddzielone przecinkami)"
+                type="text"
+                value={keywords}
+                onChange={(e) => setKeywords(e.target.value)}
+                style={{width:"400px", height:"25px", marginBottom: "10px", outlineColor:"#799186"}}
+              />
+            </div>
+
             <button style={buttonStyle} type="submit">Dodaj nowy post</button>
           </form>
         </div>
         <Sidebar />
       </div>
-
     </>
   );
 };

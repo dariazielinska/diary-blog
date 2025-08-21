@@ -19,7 +19,7 @@ const Navbar = ({ fetchPosts }) => {
     height: '30px',
     border: '1px solid #696969',
     backgroundColor: "#696969",
-    borderRadius: "20px",
+    borderRadius: "8px",
     color: "#ffffff",
     cursor: "pointer", 
     textDecoration: "none",
